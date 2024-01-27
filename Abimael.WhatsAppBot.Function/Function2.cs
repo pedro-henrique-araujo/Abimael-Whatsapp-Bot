@@ -22,7 +22,11 @@ namespace Abimael.WhatsAppBot.Function
         {
             var messagedReceived = await _dbContext.Set<Message>().FirstOrDefaultAsync(m => m.Id == new Guid(myQueueItem));
             var whatsappMessage = new WhatsappMessage(messagedReceived.From);
-            await whatsappMessage.SendAsync("my little message");
+            var text = @"
+Hello, we are Sinergia
+What kind of app do you need today?
+";
+            await whatsappMessage.SendAsync(text);
         }
     }
 }
