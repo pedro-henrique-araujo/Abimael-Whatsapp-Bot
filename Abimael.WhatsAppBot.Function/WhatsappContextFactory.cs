@@ -10,10 +10,9 @@ namespace Abimael.WhatsAppBot.Function
         public WhatsappDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<WhatsappDbContext>();
-            optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("WhatsappDatabase"));
-            var dbContext = new WhatsappDbContext(optionsBuilder.Options);
-            dbContext.Database.Migrate();
-            return dbContext;
+            var connectionString = Environment.GetEnvironmentVariable("WhatsappDatabase");
+            optionsBuilder.UseSqlServer(connectionString);
+            return new WhatsappDbContext(optionsBuilder.Options);
         }
     }
 }
