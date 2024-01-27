@@ -77,7 +77,8 @@ namespace Abimael.WhatsAppBot.Function
                 return new BadRequestResult();
             }
             req.Query.TryGetValue("hub.challenge", out var challenge);
-            return new OkObjectResult(challenge.FirstOrDefault());
+            var result = challenge.FirstOrDefault();
+            return new OkObjectResult(result);
         }
 
         private async Task QueueWhatsappMessageAsync(Message message)

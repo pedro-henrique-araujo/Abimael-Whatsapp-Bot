@@ -2,8 +2,8 @@
 using Abimael.WhatsAppBot.Function;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 [assembly: FunctionsStartup((typeof(Startup)))]
 namespace Abimael.WhatsAppBot.Function
@@ -14,7 +14,7 @@ namespace Abimael.WhatsAppBot.Function
         {
             builder.Services.AddDbContext<WhatsappDbContext>(options =>
             {
-                options.UseSqlServer("Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=Whatsapp;Trusted_Connection=True");
+                options.UseSqlServer(Environment.GetEnvironmentVariable("WhatsappDatabase"));
             });
         }
     }

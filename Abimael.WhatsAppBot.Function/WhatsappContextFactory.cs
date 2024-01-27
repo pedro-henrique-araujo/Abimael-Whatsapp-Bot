@@ -1,6 +1,7 @@
 ﻿using Abimael.WhatsappBot.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using System;
 
 namespace Abimael.WhatsAppBot.Function
 {
@@ -9,8 +10,10 @@ namespace Abimael.WhatsAppBot.Function
         public WhatsappDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<WhatsappDbContext>();
-            optionsBuilder.UseSqlServer("Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=Whatsapp;Trusted_Connection=True");
-            return new WhatsappDbContext(optionsBuilder.Options);
+            optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("WhatsappDatabase"));
+            var dbContext = new WhatsappDbContext(optionsBuilder.Options);
+            dbContext.Database.Migrate();
+            return dbContext;
         }
     }
 }
