@@ -8,10 +8,10 @@ namespace Abimael.WhatsAppBot.Function
 {
     public class Function
     {
-        [FunctionName("Function")]
-        public void Run([BlobTrigger("samples-workitems/{name}", Connection = "azure")]Stream myBlob, string name, ILogger log)
-        {
-            log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
-        }
+        //[FunctionName("Function")]
+        //public void Run([BlobTrigger("samples-workitems/{name}", Connection = "azure")]Stream myBlob, string name, ILogger log)
+        //{
+        //    log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
+        //}
     }
 }
