@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Abimael.WhatsappBot.Data;
 using Abimael.WhatsappBot.Data.Entities;
@@ -23,8 +23,19 @@ namespace Abimael.WhatsAppBot.Function
             var messagedReceived = await _dbContext.Set<Message>().FirstOrDefaultAsync(m => m.Id == new Guid(myQueueItem));
             var whatsappMessage = new WhatsappMessage(messagedReceived.From);
             var text = @"
-Hello, we are Sinergia
-What kind of app do you need today?
+Bem-vindo à Abimael Ltda.! 😀
+
+Explore nossos produtos digitais e descubra um mundo de possibilidades
+Estamos aqui para ajudá-lo(a) a alcançar seus objetivos e superar suas expectativas.
+
+Veja abaixo alguns dos nosso produtos
+
+- *Curso Online ""Desenvolvimento de Aplicativos para Iniciantes"":* https://exemplo.com
+- *E-book ""Guia Completo para Marketing Digital"":* https://exemplo.com
+- *Programa de Mentoria ""Cresça sua Startup"":* https://exemplo.com
+
+Que sua jornada conosco seja repleta de sucesso e realizações!
+
 ";
             await whatsappMessage.SendAsync(text);
         }
